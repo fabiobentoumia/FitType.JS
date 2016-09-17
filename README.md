@@ -20,23 +20,23 @@ $('table').fittype({
 ### Columns ###
 
 FitType.JS works on the entire table, but if you want you can choose, using a 1-based index, to which columns you want to apply it. 
-In this example, FitType.JS will fit the contents of columns 2 and 6.
+In this example, FitType.JS will fit the contents of columns 1 and 3.
 
 ```javascript
 $('table').fittype({
-   columns : [2,6]
+   columns : [1,3]
 });
 ```
 
 ### Animation ###
 
 By default the fit/stretch happens without animation, but if you want you can enable it.
-In this example, FitType.JS will stretch the contents of columns 2 and 6 animating the text growth.
+In this example, FitType.JS will stretch the contents of columns 1 and 3 animating the text growth.
 
 ```javascript
 $('table').fittype({
    mode: 'stretch',
-   columns : [2,6],
+   columns : [1,3],
    animate: true
 });
 ```
@@ -58,7 +58,7 @@ FitType.JS calculates the fontsize to fit or stretch the cell size using a simpl
 ```javascript
 $('table').fittype({
     mode: 'fit',
-    columns: [6],                
+    columns: [3],                
     manual: function (width, height, ofs, fsw, fsh) {
         var size = 0;
         // ... do your work here ...
@@ -90,8 +90,8 @@ Create your standard HTML table, preferibly using col width sizing with `colgrou
 <table>
     <colgroup>
         <col style="width:20%" />
-        <col style="width:60%" />
-        <col style="width:20%" />                        
+        <col style="width:65%" />
+        <col style="width:15%" />                        
     </colgroup>
     <thead>
         <tr>
@@ -121,7 +121,7 @@ Create your standard HTML table, preferibly using col width sizing with `colgrou
 ```
 
 ### Step 3: Call FitType.JS ###
-To put FitType.JS at work, simply call it on a table.
+To put FitType.JS at work, simply call it on the table. All the text will be resized (if required) to fit the available space of its table cell.
 
 ```javascript
 $('table').fittype();
@@ -134,7 +134,7 @@ You will most likely want to change the default settings. To do so, simply inclu
 ```javascript
 $('table').fittype({
    mode      : 'fit',
-   columns   : [1,2,5],
+   columns   : [3],
    animate   : true,
    responsive: true
 });
