@@ -14,12 +14,12 @@ In this example, FitType.JS will stretch the text until it takes all the availab
 
 ```javascript
 $('table').fittype({
-   mode : 'stretch'
+   mode : 'fit'
 });
 ```
 ### Columns ###
 
-Choose, with a 1-based index, to which columns you want to apply it. 
+FitType.JS works on the entire table, but if you want you can choose, using a 1-based index, to which columns you want to apply it. 
 In this example, FitType.JS will fit the contents of columns 2 and 6.
 
 ```javascript
