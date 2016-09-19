@@ -10,7 +10,7 @@ This is where FitType.JS fits in.
 ### Fit or Stretch ###
 
 Choose if you want that the content has to `fit` or `stretch` the container width or height.
-In this example, FitType.JS will stretch the text until it takes all the available space, that is the minimum between cell's width and height.
+In this example, FitType.JS will stretch the text until it takes all the available space, that is the minimum between container's width and height.
 
 ```javascript
 $('table').fittype({
