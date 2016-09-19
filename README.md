@@ -1,26 +1,34 @@
 # FitType.JS
-Fit or stretch table content based on cells width and height.
+Fit or stretch text content based on its container width and height.
 
 # What does FitType.JS do?
-Viewport Sized Typographic allows you to change fontsize based on viewport size, so if you resize your viewport the fonts will resize too. But what if you have a fixed viewport, a table and you want the text always fit the cell size when the text grows up?
+Viewport Sized Typographic allows you to change fontsize based on viewport size, so if you resize your viewport the fonts will resize too. But what if you have a fixed viewport, a container and you want the text always fits the container size when the text grows up?
 This is where FitType.JS fits in.
 
 ## Options ##
 
 ### Fit or Stretch ###
 
-Choose if you want that the content has to `fit` or `stretch` the cell width or height.
+Choose if you want that the content has to `fit` or `stretch` the container width or height.
 In this example, FitType.JS will stretch the text until it takes all the available space, that is the minimum between cell's width and height.
 
 ```javascript
 $('table').fittype({
+   mode : 'stretch'
+});
+```
+
+In the following example instead FitType.JS will reduce the text fontsize in order to fit it in his `div` container.
+
+```javascript
+$('#adiv').fittype({
    mode : 'fit'
 });
 ```
+
 ### Columns ###
 
-FitType.JS works on the entire table, but if you want you can choose, using a 1-based index, to which columns you want to apply it. 
-In this example, FitType.JS will fit the contents of columns 1 and 3.
+If FitType.JS is applied to a `table` it works on the entire table, but if you want you can choose, using a 1-based index, to which columns you want to apply it. In this example, FitType.JS will fit the contents of columns 1 and 3.
 
 ```javascript
 $('table').fittype({
@@ -28,18 +36,7 @@ $('table').fittype({
 });
 ```
 
-### Animation ###
-
-By default the fit/stretch happens without animation, but if you want you can enable it.
-In this example, FitType.JS will stretch the contents of columns 1 and 3 animating the text growth.
-
-```javascript
-$('table').fittype({
-   mode: 'stretch',
-   columns : [1,3],
-   animate: true
-});
-```
+If you apply the `columns` option to a container that is not a table it will be simply ignored.
 
 ### Viewport resizing ###
 
@@ -53,7 +50,7 @@ $('table').fittype({
 
 ### Custom Resizing Function ###
 
-FitType.JS calculates the fontsize to fit or stretch the cell size using a simple mathematical proportion, but you can provide your simple or complex alghoritm to do it best. FitType.JS will call your function for each cell to resize providing `width` and `height` of the cell, the original `fontsize` and the suggested fontsize to fit/stretch in `width` and `height`.
+FitType.JS calculates the fontsize to fit or stretch the container size using a simple mathematical proportion, but you can provide your simple or complex alghoritm to do it best. FitType.JS will call your function for each container to resize providing `width` and `height` of the container, the original `fontsize` and the suggested fontsize to fit/stretch in `width` and `height`.
 
 ```javascript
 $('table').fittype({
@@ -64,6 +61,45 @@ $('table').fittype({
         // ... do your work here ...
         return size;
     }
+});
+```
+If you apply it to a `table` your function will be called for each table cell.
+
+### Event dependencies ###
+
+Maybe your text changes when you input some information in an input text or when you select an option from a combobox. You may have for example a text input that updates the container text on `keyup`.
+
+```javascript
+var handler = function(el){
+   $('#mycontainer').text($(el).val());
+}
+```
+
+```html
+<input id="message" type="text" onkeyup="handler(this);" />
+<div id="#mycontainer">
+   Hello, my name is Fabio
+</div>
+```
+
+FitType.JS doesn't know that your text changed so it will not re-apply fit/stretch, but you can tell it to do simply specifying the events of the elements that once triggered must resize the text.
+In the following example FitType.JS will apply resizing any time that the `keyup` event is raised on the field identified by the jQuery selector `#message`.
+
+```javascript
+$('#mycontainer').fittype({
+    mode    : 'stretch',
+    depends : { '#message' : ['keyup']}
+});
+```
+
+You can specify multiple events on multiple fields, like the example below where the resizing will be applied when:
+- the `keyup` event raises on the input identified by the jQuery selector `#message`
+- the `blur` or `click` event raise on the input identified by the jQuery selector `#anotherfield`
+
+```javascript
+$('#mycontainer').fittype({
+    mode    : 'stretch',
+    depends : { '#message' : ['keyup'], '#anotherfield' : ['blur', 'click']}
 });
 ```
 
@@ -120,8 +156,15 @@ Create your standard HTML table, preferibly using col width sizing with `colgrou
 </table>
 ```
 
+Otherwise you may have any other block container like `div` or `p`.
+
+```html
+<div id="mydiv" style="width:100px;height:50px;">
+   <span>My fitting text</span>
+</div>
+```
 ### Step 3: Call FitType.JS ###
-To put FitType.JS at work, simply call it on the table. All the text will be resized (if required) to fit the available space of its table cell.
+To put FitType.JS at work, simply call it on the container. All the text will be resized (if required) to fit the available space of its container.
 
 ```javascript
 $('table').fittype();
