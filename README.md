@@ -179,8 +179,9 @@ You will most likely want to change the default settings. To do so, simply inclu
 $('table').fittype({
    mode      : 'fit',
    columns   : [3],
-   animate   : true,
-   responsive: true
+   responsive: true,
+   manual: function(){},
+   depends: {}
 });
 ```
 
