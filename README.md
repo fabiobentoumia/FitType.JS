@@ -82,8 +82,7 @@ var handler = function(el){
 </div>
 ```
 
-FitType.JS doesn't know that your text changed so it will not re-apply fit/stretch, but you can tell it to do simply specifying the events of the elements that once triggered must resize the text.
-In the following example FitType.JS will apply resizing any time that the `keyup` event is raised on the field identified by the jQuery selector `#message`.
+FitType.JS doesn't know that your text changed so it will not apply fit/stretch again, but you can tell it to do by simply specifying the events of the elements that once triggered must resize the text. In the following example FitType.JS will apply resizing any time that the `keyup` event is raised on the field identified by the jQuery selector `#message`.
 
 ```javascript
 $('#mycontainer').fittype({
@@ -92,9 +91,7 @@ $('#mycontainer').fittype({
 });
 ```
 
-You can specify multiple events on multiple fields, like the example below where the resizing will be applied when:
-- the `keyup` event raises on the input identified by the jQuery selector `#message`
-- the `blur` or `click` event raise on the input identified by the jQuery selector `#anotherfield`
+You can specify multiple events on multiple fields.
 
 ```javascript
 $('#mycontainer').fittype({
@@ -102,6 +99,10 @@ $('#mycontainer').fittype({
     depends : { '#message' : ['keyup'], '#anotherfield' : ['blur', 'click']}
 });
 ```
+
+In the above example the resizing will be applied everytime that:
+- the `keyup` event raises on the input identified by the jQuery selector `#message`
+- the `blur` or `click` event raise on the input identified by the jQuery selector `#anotherfield`
 
 ## Getting Started ##
 
