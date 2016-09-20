@@ -179,7 +179,7 @@ You will most likely want to change the default settings. To do so, simply inclu
 ```javascript
 $('table').fittype({
    mode        : 'fit',
-   columns     : [3],
+   columns     : [],
    responsive  : true,
    manual      : function(){},
    depends     : {}
