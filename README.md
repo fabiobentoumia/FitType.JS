@@ -44,19 +44,19 @@ By default FitType.JS will take care to resize contents if you resize your viewp
 
 ```javascript
 $('table').fittype({
-   responsive: 'false'
+   responsive : 'false'
 });
 ```
 
 ### Custom Resizing Function ###
 
-FitType.JS calculates the fontsize to fit or stretch the container size using a simple mathematical proportion, but you can provide your simple or complex alghoritm to do it best. FitType.JS will call your function for each container to resize providing `width` and `height` of the container, the original `fontsize` and the suggested fontsize to fit/stretch in `width` and `height`.
+FitType.JS calculates the fontsize to fit or stretch the container size using a simple mathematical proportion, but you can provide your simple or complex alghoritm to do it better. FitType.JS will call your function for each container to resize providing `width` and `height` of the container, the original `fontsize` and the suggested fontsize to fit/stretch in `width` and `height`.
 
 ```javascript
 $('table').fittype({
-    mode: 'fit',
-    columns: [3],                
-    manual: function (width, height, ofs, fsw, fsh) {
+    mode    : 'fit',
+    columns : [3],                
+    manual  : function (width, height, ofs, fsw, fsh) {
         var size = 0;
         // ... do your work here ...
         return size;
@@ -164,6 +164,7 @@ Otherwise you may have any other block container like `div` or `p`.
    <span>My fitting text</span>
 </div>
 ```
+
 ### Step 3: Call FitType.JS ###
 To put FitType.JS at work, simply call it on the container. All the text will be resized (if required) to fit the available space of its container.
 
@@ -177,11 +178,11 @@ You will most likely want to change the default settings. To do so, simply inclu
 
 ```javascript
 $('table').fittype({
-   mode      : 'fit',
-   columns   : [3],
-   responsive: true,
-   manual: function(){},
-   depends: {}
+   mode        : 'fit',
+   columns     : [3],
+   responsive  : true,
+   manual      : function(){},
+   depends     : {}
 });
 ```
 
